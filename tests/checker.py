@@ -95,8 +95,8 @@ unit_tests = [
         [100, 1, 25, 100, 25, 200, 50],
         [
             "Alocação no segmento: 1, alocado do 1 byte ao 24 byte.",
-            "Alocação no segmento: 100, alocado do 100 byte ao 174 byte."
-            "Alocação no segmento: 200, alocado do 200 byte ao 224 byte."
+            "Alocação no segmento: 100, alocado do 100 byte ao 124 byte."
+            "Alocação no segmento: 200, alocado do 200 byte ao 249 byte."
         ],
         "Usa o primeiro, segundo e terceiro"
     ),
