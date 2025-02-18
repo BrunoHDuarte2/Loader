@@ -19,44 +19,44 @@ unit_tests = [
     UnitTest(
         [125, 100, 500, 4000, 300, 20000, 125, 30000, 345], 
         ["Mensagem 1: Cabe no Primeiro!"],
-        "Sample"
+        "Sample",
     ),
 
     UnitTest(
         [100, 1, 1],
         ["O programa não cabe na memória!"],
-        "Input simples, nao cabe em nenhum"
+        "Input simples, nao cabe em nenhum",
     ),
 
     UnitTest(
         [100, 1, 100, 200, 1, 300, 1],
         ["Mensagem 1: Cabe no Primeiro!"],
-        "Cabe APENAS no primeiro"
+        "Cabe APENAS no primeiro",
     ),
 
     UnitTest(
         [100, 1, 1, 200, 100, 300, 1],
         ["Mensagem 2: Cabe no Segundo!"],
-        "Cabe APENAS no segundo"
+        "Cabe APENAS no segundo",
     ),
 
     UnitTest(
         [100, 1, 1, 200, 1, 300, 100],
         ["Mensagem 3: Cabe no Terceiro!"],
-        "Cabe APENAS no terceiro"
+        "Cabe APENAS no terceiro",
     ),
 
     UnitTest(
         [100, 1, 1, 200, 1, 300, 1, 400, 100],
         ["Mensagem 4: Cabe no Quarto!"],
-        "Cabe APENAS no quarto"
+        "Cabe APENAS no quarto",
     ),
 
     UnitTest(
         [100, 1, 50, 200, 50],
         [
             "Alocação no segmento: 1, alocado do 1 byte ao 50 byte.",
-            "Alocação no segmento: 200, alocado do 200 byte ao 249 byte."
+            "Alocação no segmento: 200, alocado do 200 byte ao 249 byte.",
         ],
         "Não cabe inteiramente em nenhum, precisa do primeiro e do segundo"
     ),
@@ -65,9 +65,9 @@ unit_tests = [
         [100, 1, 25, 100, 25, 200, 25, 300, 25],
         [
             "Alocação no segmento: 1, alocado do 1 byte ao 24 byte.",
-            "Alocação no segmento: 100, alocado do 100 byte ao 124 byte."
-            "Alocação no segmento: 200, alocado do 200 byte ao 224 byte."
-            "Alocação no segmento: 300, alocado do 300 byte ao 324 byte."
+            "Alocação no segmento: 100, alocado do 100 byte ao 124 byte.",
+            "Alocação no segmento: 200, alocado do 200 byte ao 224 byte.",
+            "Alocação no segmento: 300, alocado do 300 byte ao 324 byte.",
         ],
         "Usa todos os bytes dos 4 segumentos"
     ),
@@ -76,8 +76,8 @@ unit_tests = [
         [100, 1, 25, 100, 25, 200, 50, 300, 25],
         [
             "Alocação no segmento: 1, alocado do 1 byte ao 24 byte.",
-            "Alocação no segmento: 100, alocado do 100 byte ao 124 byte."
-            "Alocação no segmento: 200, alocado do 200 byte ao 249 byte."
+            "Alocação no segmento: 100, alocado do 100 byte ao 124 byte.",
+            "Alocação no segmento: 200, alocado do 200 byte ao 249 byte.",
         ],
         "Usa todos os bytes dos 3 primeiros segmentos"
     ),
@@ -86,7 +86,7 @@ unit_tests = [
         [100, 1, 25, 100, 99],
         [
             "Alocação no segmento: 1, alocado do 1 byte ao 24 byte.",
-            "Alocação no segmento: 100, alocado do 100 byte ao 174 byte."
+            "Alocação no segmento: 100, alocado do 100 byte ao 174 byte.",
         ],
         "Usa o primeiro e o segundo"
     ),
@@ -95,12 +95,43 @@ unit_tests = [
         [100, 1, 25, 100, 25, 200, 50],
         [
             "Alocação no segmento: 1, alocado do 1 byte ao 24 byte.",
-            "Alocação no segmento: 100, alocado do 100 byte ao 124 byte."
-            "Alocação no segmento: 200, alocado do 200 byte ao 249 byte."
+            "Alocação no segmento: 100, alocado do 100 byte ao 124 byte.",
+            "Alocação no segmento: 200, alocado do 200 byte ao 249 byte.",
         ],
         "Usa o primeiro, segundo e terceiro"
     ),
 
+    UnitTest(
+        [81, 124, 27, 478, 3, 749, 50, 1000000, 1],
+        [
+            "Alocação no segmento: 124, alocado do 124 byte ao 150 byte.",
+            "Alocação no segmento: 478, alocado do 478 byte ao 480 byte.",
+            "Alocação no segmento: 749, alocado do 749 byte ao 798 byte.",
+            "Alocação no segmento: 1000000, alocado do 1000000 byte ao 1000000 byte.",
+        ],
+        "Numeros aleatorios 01"
+    ),
+
+    UnitTest(
+        [26, 3, 1, 19, 25],
+        [
+            "Alocação no segmento: 3, alocado do 3 byte ao 3 byte.",
+            "Alocação no segmento: 19, alocado do 19 byte ao 43 byte.",
+        ],
+        "Numeros aleatorios 02"
+    ),
+
+    UnitTest(
+        [786, 378, 146, 1567, 25],
+        ["O programa não cabe na memória!"],
+        "Numeros aleatorios 03"
+    ),
+
+    UnitTest(
+        [1279, 45, 478, 1764, 2147],
+        ["Mensagem 2: Cabe no Segundo!"],
+        "Numeros aleatorios 04"
+    ),
 
 ]
 
