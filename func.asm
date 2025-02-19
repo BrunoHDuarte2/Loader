@@ -14,6 +14,7 @@ section .bss
 NUM resb 16
 NUM_INV resb 16
 NUM_SZ resb 16
+MIN resb 16
 
 section .data
 
@@ -32,17 +33,17 @@ msg4 db "Mensagem 4: Cabe no Quarto!", 0Ah     ; Mensagem 4
 len4 equ $ - msg4  ; Tamanho da mensagem 4
 
 ; Mensagem de saída: Alocação no segmento: x, alocado do x byte ao y byte. 0xA
-header db "Alocação no segmento "  
+header db "Alocação no segmento: "  
 lenheader equ $ - header  
 
-alocadoDo db ": alocado do "  
+alocadoDo db ", alocado do "
 lenalocadoDo equ $ - alocadoDo 
 
-byteAo db " byte ao "  
-lenbyteAo equ $ - byteAo 
+byteAo db " byte ao "
+lenbyteAo equ $ - byteAo
 
 byteOxA db " byte.", 0Ah
-lenbyteOxA equ $ - byteOxA 
+lenbyteOxA equ $ - byteOxA
 
 naoCabe db "O programa não cabe na memória!", 0Ah
 lenNCabe equ $ - naoCabe
@@ -92,6 +93,91 @@ carregador:
     cmp eax, programSize
     jl naoNaoPraAlocar
 
+    ; address e min(programSize, size)
+
+    push programSize
+    push sizeOne
+    call minTwo
+    pop eax
+    pop eax
+
+    mov eax, [MIN]
+    sub programSize, eax
+
+    add eax, addressOne
+    dec eax
+
+    push addressOne
+    push eax
+    call printSegment
+    pop eax
+    pop eax
+
+    cmp programSize, 0
+    je fim
+
+    push programSize
+    push sizeTwo
+    call minTwo
+    pop eax
+    pop eax
+
+    mov eax, [MIN]
+    sub programSize, eax
+
+    add eax, addressTwo
+    dec eax
+
+    push addressTwo
+    push eax
+    call printSegment
+    pop eax
+    pop eax
+
+    cmp programSize, 0
+    je fim
+
+    push programSize
+    push sizeThree
+    call minTwo
+    pop eax
+    pop eax
+
+    mov eax, [MIN]
+    sub programSize, eax
+
+    add eax, addressThree
+    dec eax
+
+    push addressThree
+    push eax
+    call printSegment
+    pop eax
+    pop eax
+
+    cmp programSize, 0
+    je fim
+
+    push programSize
+    push sizeFour
+    call minTwo
+    pop eax
+    pop eax
+
+    mov eax, [MIN]
+    sub programSize, eax
+
+    add eax, addressFour
+    dec eax
+
+    push addressFour
+    push eax
+    call printSegment
+    pop eax
+    pop eax
+
+    cmp programSize, 0
+    je fim
 
 fim:
     leave
@@ -295,6 +381,25 @@ print_num:
     mov ecx, NUM
     mov edx, [NUM_SZ]
     int 80h
+
+    leave
+    ret
+
+
+; pega dois numeros da stack
+; retorna o menor em eax
+
+minTwo:
+    enter 0, 0
+
+    mov eax, [ebp + 8]
+    mov ebx, [ebp + 12]
+    cmp eax, ebx
+    jle minTwo_store
+    mov eax, ebx
+
+minTwo_store:
+    mov [MIN], eax
 
     leave
     ret
