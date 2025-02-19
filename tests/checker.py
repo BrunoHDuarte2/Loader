@@ -18,7 +18,10 @@ unit_tests = [
     
     UnitTest(
         [125, 100, 500, 4000, 300, 20000, 125, 30000, 345], 
-        ["Mensagem 1: Cabe no Primeiro!"],
+        [
+            "Mensagem 1: Cabe no Primeiro!",
+            "Alocação no segmento 100: alocado do 100 byte ao 224 byte.",
+        ],
         "Sample",
     ),
 
@@ -30,25 +33,37 @@ unit_tests = [
 
     UnitTest(
         [100, 1, 100, 200, 1, 300, 1],
-        ["Mensagem 1: Cabe no Primeiro!"],
+        [
+            "Mensagem 1: Cabe no Primeiro!",
+            "Alocação no segmento 1: alocado do 1 byte ao 100 byte.",
+        ],
         "Cabe APENAS no primeiro",
     ),
 
     UnitTest(
         [100, 1, 1, 200, 100, 300, 1],
-        ["Mensagem 2: Cabe no Segundo!"],
+        [
+            "Mensagem 2: Cabe no Segundo!",
+            "Alocação no segmento 200: alocado do 200 byte ao 299 byte.",
+        ],
         "Cabe APENAS no segundo",
     ),
 
     UnitTest(
         [100, 1, 1, 200, 1, 300, 100],
-        ["Mensagem 3: Cabe no Terceiro!"],
+        [
+            "Mensagem 3: Cabe no Terceiro!",
+            "Alocação no segmento 300: alocado do 300 byte ao 399 byte.",
+        ],
         "Cabe APENAS no terceiro",
     ),
 
     UnitTest(
         [100, 1, 1, 200, 1, 300, 1, 400, 100],
-        ["Mensagem 4: Cabe no Quarto!"],
+        [
+            "Mensagem 4: Cabe no Quarto!",
+            "Alocação no segmento 400: alocado do 400 byte ao 499 byte.",
+        ],
         "Cabe APENAS no quarto",
     ),
 
@@ -156,5 +171,6 @@ for i in range(len(unit_tests)):
 
     print(f"Test {i + 1} -> {test.description}: {result}")
 
-    # if test.expected_out != parsed_out:
+    if test.expected_out != parsed_out:
         # print(f"\tOut = {output}, Expected = { test.expected_out }")
+        exit(0)
