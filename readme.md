@@ -13,7 +13,7 @@ No primeiro momento verificamos se é possível carregar o programa inteiramente
 
 ## Exemplos
 ./carregador 125 100 500 4000 300 20000 125 30000 345
-Neste caso, a saída esperada é de que o programa esteja completamente incluso no primeiro segmento e o programa irá retornar "Mensagem 1: Cabe no Primeiro!"
+Neste caso, a saída esperada é de que o programa esteja completamente incluso no primeiro segmento e o programa irá retornar "Mensagem 1: Cabe no Primeiro!" e depois "Alocação no segmento: 100, alocado do 100 byte ao 224 byte."
 
 ## Testes
 Para garantir a assertividade dessa solução, também foram criados vários testes de unidade e um script em python para rodá-los.
